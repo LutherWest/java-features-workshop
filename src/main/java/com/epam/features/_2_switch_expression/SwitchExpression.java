@@ -1,7 +1,5 @@
 package com.epam.features._2_switch_expression;
 
-import java.lang.annotation.RetentionPolicy;
-
 /**
  * @since 12 preview
  * @since 13 second preview
@@ -91,5 +89,11 @@ public class SwitchExpression {
                 throw new RuntimeException("Can't happen!");
         }
         return javaDoc;
+    }
+
+    public enum RetentionPolicy {
+        SOURCE,
+        CLASS,
+        RUNTIME
     }
 }

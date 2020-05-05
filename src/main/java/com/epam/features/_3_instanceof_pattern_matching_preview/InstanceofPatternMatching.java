@@ -5,9 +5,9 @@ package com.epam.features._3_instanceof_pattern_matching_preview;
  */
 public class InstanceofPatternMatching {
     public static void main(String[] args) {
-        final var obj = Math.random() > 0.5 ? new Object() : "abc".repeat((int) (Math.random() * 10));
-        instanceofUsage(obj);
-        instanceofUsageWithCondition(obj);
+        final var stringOrObject = Math.random() > 0.5 ? new Object() : "abc".repeat((int) (Math.random() * 10));
+        instanceofUsage(stringOrObject);
+        instanceofUsageWithCondition(stringOrObject);
     }
 
     private static void instanceofUsage(Object arg) {
