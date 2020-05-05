@@ -10,17 +10,16 @@ public interface PrivateMethodsInInterfaces {
     String nthElement(int n);
 
     default Optional<Integer> lastElementAsInt() {
-        try {
-            return Optional.of(Integer.valueOf(lastElement()));
-        } catch (NumberFormatException ex) {
-            ex.printStackTrace();
-            return Optional.empty();
-        }
+        return toInt(lastElement());
     }
 
     default Optional<Integer> nthElementAsInt(int n) {
+        return toInt(nthElement(n));
+    }
+
+    private /*static*/ Optional<Integer> toInt(String s) {
         try {
-            return Optional.of(Integer.valueOf(nthElement(n)));
+            return Optional.of(Integer.valueOf(s));
         } catch (NumberFormatException ex) {
             ex.printStackTrace();
             return Optional.empty();

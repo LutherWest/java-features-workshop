@@ -1,37 +1,21 @@
 package com.epam.features._9_lib_enhancements._2_standard_http_client;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 public class StandardHttpClient {
-    public static void main(String[] args) throws IOException {
-        HttpURLConnection connection = (HttpURLConnection) new URL("http://worldclockapi.com/api/json/utc/now")
-                .openConnection();
-        //add headers to the connection, or check the status if desired..
+    public static void main(String[] args) throws IOException, InterruptedException {
+        final var client = HttpClient.newBuilder().build();
 
-        // handle error response code it occurs
-        int responseCode = connection.getResponseCode();
-        InputStream inputStream;
-        if (200 <= responseCode && responseCode <= 299) {
-            inputStream = connection.getInputStream();
-        } else {
-            inputStream = connection.getErrorStream();
-        }
+        final var request = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("http://worldclockapi.com/api/json/utc/now"))
+                .build();
 
-        StringBuilder response = new StringBuilder();
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(inputStream))) {
-            String currentLine;
-
-            while ((currentLine = in.readLine()) != null)
-                response.append(currentLine).append("\n");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(response.toString());
+        final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
     }
 }

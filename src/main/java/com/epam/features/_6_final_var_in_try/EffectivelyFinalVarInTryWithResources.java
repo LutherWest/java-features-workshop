@@ -10,8 +10,8 @@ public class EffectivelyFinalVarInTryWithResources {
 
     private static StatefulResource doAndReturn() {
         StatefulResource resource = new StatefulResource();
-        try (StatefulResource r = resource) {
-            System.out.println(r);
+        try (resource) {
+            System.out.println(resource);
         }
         return resource;
     }

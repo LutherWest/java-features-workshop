@@ -23,10 +23,10 @@ public class StackWalkerApi {
     }
 
     private static void method4() {
-        for (StackTraceElement stackTraceElement : Thread.currentThread().getStackTrace()) {
-            if (Objects.equals(stackTraceElement.getMethodName(), "main")) {
-                System.out.println(stackTraceElement);
-            }
-        }
+        StackWalker.getInstance()
+                .walk(stackFrames -> stackFrames
+                        .filter(frame -> Objects.equals(frame.getMethodName(), "main"))
+                        .findFirst())
+                .ifPresent(System.out::println);
     }
 }

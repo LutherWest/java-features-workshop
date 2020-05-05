@@ -10,13 +10,14 @@ import java.util.Map;
  */
 public class LocalVariableTypeInference {
     public static void main(String[] args) {
-        final String str = "Hello World!";
+        final var str = "Hello World!";
         System.out.println(str);
 
-        final ClassWithExtraLongName name = new ClassWithExtraLongName();
-        final Map<String, Object> cache = new HashMap<>();
-        System.out.println(name);
-        System.out.println(cache);
+        final var name = new ClassWithExtraLongName();
+        final var cache = new HashMap<>();
+        System.out.println(name instanceof ClassWithExtraLongName);
+        System.out.println(cache instanceof Map);
+        System.out.println(cache instanceof HashMap);
 
         final var l = Math.random() > 0.5 ? (byte) 1 : 1L;
         final var obj = Math.random() > 0.5 ? new Children1() : new Children2();

@@ -11,18 +11,14 @@ public class InstanceofPatternMatching {
     }
 
     private static void instanceofUsage(Object arg) {
-        if (arg instanceof String) {
-            String str = (String) arg;
+        if (arg instanceof String str) {
             System.out.printf("Passed argument - [%s] has length = %d", str, str.length());
         }
     }
 
     private static void instanceofUsageWithCondition(Object arg) {
-        if (arg instanceof String) {
-            String str = (String) arg;
-            if (str.length() > 10) {
-                System.out.printf("Passed argument - [%s] has length > 10", str);
-            }
+        if (arg instanceof String str && str.length() > 10) {
+            System.out.printf("Passed argument - [%s] has length > 10", str);
         }
     }
 }
