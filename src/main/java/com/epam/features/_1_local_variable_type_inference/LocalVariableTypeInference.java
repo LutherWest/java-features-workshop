@@ -10,23 +10,31 @@ import java.util.Map;
  */
 public class LocalVariableTypeInference {
     public static void main(String[] args) {
+        // good places to add var
         final var str = "Hello World!";
-        System.out.println(str);
+        final var classWithLongName = new ClassWithExtraLongName();
 
-        final var name = new ClassWithExtraLongName();
-        final var cache = new HashMap<>();
-        System.out.println(name instanceof ClassWithExtraLongName);
-        System.out.println(cache instanceof Map);
-        System.out.println(cache instanceof HashMap);
+        // bad places to add var
+        final Map<String, Object> cache = new HashMap<>();
+        final JobExecutionResult result = execute();
 
-        final var l = Math.random() > 0.5 ? (byte) 1 : 1L;
+        // pay attention to inferred type
         final var obj = Math.random() > 0.5 ? new Children1() : new Children2();
         final var date = Math.random() > 0.5 ? Instant.now() : LocalDateTime.now();
     }
-    
+
+    // var allowed only as local variable (change String to var)
+    private static String message = "message";
+
     private static class ClassWithExtraLongName { }
 
     private static class Parent { }
     private static class Children1 extends Parent {}
     private static class Children2 extends Parent {}
+
+    private static class JobExecutionResult {}
+
+    private static JobExecutionResult execute() {
+        return new JobExecutionResult();
+    }
 }

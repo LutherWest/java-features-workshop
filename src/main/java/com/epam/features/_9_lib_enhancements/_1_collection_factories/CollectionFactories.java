@@ -18,7 +18,12 @@ public class CollectionFactories {
 
         final var list = Stream.of(1, 2, 3).collect(Collectors.toList());
         list.add(4);
-        List.copyOf(list);
+        final var unmodifiableList = List.copyOf(list);
+        try {
+            unmodifiableList.add(5);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
         // sets
         System.out.println(Set.of(1, 2, 3));

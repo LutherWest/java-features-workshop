@@ -5,7 +5,7 @@ package com.epam.features._6_final_var_in_try;
  */
 public class EffectivelyFinalVarInTryWithResources {
     public static void main(String[] args) {
-        doAndReturn();
+        System.out.println(doAndReturn());
     }
 
     private static StatefulResource doAndReturn() {

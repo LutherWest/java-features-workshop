@@ -1,7 +1,5 @@
 package com.epam.features._2_switch_expression;
 
-import java.lang.annotation.RetentionPolicy;
-
 /**
  * @since 12 preview
  * @since 13 second preview
@@ -65,5 +63,11 @@ public class SwitchExpression {
             case RUNTIME -> "Annotations are to be recorded in the class file by the compiler and "
                     + "retained by the VM at run time, so they may be read reflectively.";
         };
+    }
+
+    public enum RetentionPolicy {
+        SOURCE,
+        CLASS,
+        RUNTIME
     }
 }
